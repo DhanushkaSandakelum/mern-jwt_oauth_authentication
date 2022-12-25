@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-
-import { signin } from "../actions/auth";
+import { signin } from "../redux/actions/auth";
 
 import Layout from "../components/Layout";
 
@@ -17,7 +16,9 @@ const LOGIN_DATA = {
 };
 
 function Login() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const {isLoading} = useSelector(state => state.auth)
+
   const history = useHistory();
 
   const [loginForm, setLoginForm] = useState(LOGIN_DATA);
@@ -53,7 +54,7 @@ function Login() {
             placeholder="Password"
             onChange={handleOnChange}
           />
-          <Button name="Login" onClick={() => onLogin()} />
+          <Button name="Login" onClick={() => onLogin()} isLoading={isLoading}/>
         </FormContainer>
       </div>
     </Layout>

@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import decode from "jwt-decode";
-import * as actionType from "../constants/actionTypes";
+import * as actionType from "../redux/constants/actionTypes";
 
 import Button from "./forms/Button";
 

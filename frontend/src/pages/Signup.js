@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { signup } from "../actions/auth";
+import { signup } from "../redux/actions/auth";
 
 import Layout from "../components/Layout";
 
@@ -19,6 +19,8 @@ const LOGIN_DATA = {
 
 function Signup() {
   const dispatch = useDispatch();
+  const {isLoading} = useSelector(state => state.auth)
+
   const history = useHistory();
 
   const [signupForm, setSignupForm] = useState(LOGIN_DATA);
@@ -68,7 +70,7 @@ function Signup() {
             placeholder="Password"
             onChange={handleOnChange}
           />
-          <Button name="Signup" onClick={() => onSignup()} />
+          <Button name="Signup" onClick={() => onSignup()} isLoading={isLoading} />
         </FormContainer>
       </div>
     </Layout>
